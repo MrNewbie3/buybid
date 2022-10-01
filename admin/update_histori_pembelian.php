@@ -1,5 +1,5 @@
 <?php
-include "../header.php";
+include "../frontend/php/header.php";
 ?>
 <div class="wrapper px-10">
     <div class="top-bar w-fit flex flex-col my-16 gap-y-8">
@@ -12,40 +12,28 @@ include "../header.php";
                 <th class="border border-slate-700">#</th>
                 <th class="border border-slate-700">Photo</th>
                 <th class="border border-slate-700">Name</th>
-                <th class="border border-slate-700">Qty</th>
-                <th class="border border-slate-700">Ordered</th>
                 <th class="border border-slate-700">Price</th>
-                <th class="border border-slate-700">Total price</th>
-                <th class="border border-slate-700">Status</th>
                 <th class="border border-slate-700">Action</th>
             </tr>
             <?php
-            include "../koneksi.php";
-            $qry_produk = mysqli_query($conn, "select * from  detail_transaksi inner join produk on produk.id_produk = detail_transaksi.id_produk ORDER BY id_detail_transaksi DESC");
+            include "../backend/php/koneksi.php";
+            $qry_produk = mysqli_query($conn, "select * from barang ");
             $no = 1;
             while ($dt_produk = mysqli_fetch_array($qry_produk)) {
-                $produk =  $dt_produk['nama_produk'];
-                $qty =  $dt_produk['qty'];
-                $foto = $dt_produk['foto'];
-                $tgl =  $dt_produk['tgl_transaksi'];
-                $price = $dt_produk['subtotal'];
-                $subtotal = "Rp. " . number_format($dt_produk['subtotal'], 0, ",", ".");
-                $total = $price * $qty;
-                $status = $dt_produk['status'] ?? "Preparing";
+                $produk =  $dt_produk['nama_barang'];
+                $harga =  $dt_produk['harga_awal'];
+                $foto = $dt_produk['foto_produk'];
             ?>
                 <tr>
                     <td class="border border-slate-700"><?= $no ?></td>
                     <td class="border border-slate-700">
-                        <img src="../<?= $foto ?>" alt="Photo car">
+                        <img src="<?= $foto ?>" alt="Photo car">
                     </td>
                     <td class="border border-slate-700"><?= $produk ?></td>
-                    <td class="border border-slate-700"><?= $qty ?></td>
-                    <td class="border border-slate-700"><?= $tgl ?></td>
-                    <td class="border border-slate-700"><?= $price ?></td>
-                    <td class="border border-slate-700"><?= $total ?></td>
-                    <td class="border border-slate-700"><?= $status ?></td>
+                    <td class="border border-slate-700"><?= $harga ?></td>
+
                     <td class="border border-slate-700">
-                        <a href="edit_histori.php?id_detail_transaksi=<?= $dt_produk['id_detail_transaksi'] ?>">
+                        <a href="edit_histori.php?id_barang=<?= $dt_produk['id_barang'] ?>">
                             <i class="fas fa-edit"></i>
                         </a>
                     </td>
@@ -59,5 +47,5 @@ include "../header.php";
 </div>
 
 <?php
-include "../footer.php";
+include "../frontend/php/footer.php";
 ?>

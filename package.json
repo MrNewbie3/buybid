@@ -1,8 +1,8 @@
 {
-  "name": "toko_online",
+  "name": "buy_bid",
   "version": "1.0.0",
   "description": "toko online php native",
-  "main": "index.mjs",
+  "main": "app.ts",
   "scripts": {
     "test": "npm run dev",
     "tailwind": "npx tailwindcss -i ./frontend/css/input.css -o ./dist/output.css --watch"
@@ -24,5 +24,8 @@
   "dependencies": {
     "aos": "^2.3.4",
     "sweetalert2": "^11.4.33"
-  }
+  },
+  "keywords": [
+    "auction"
+  ]
 }

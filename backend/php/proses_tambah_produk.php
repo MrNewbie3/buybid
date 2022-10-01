@@ -3,13 +3,11 @@ if ($_POST) {
     $nama_produk = $_POST['nama_produk'];
     $deskripsi = $_POST['deskripsi'];
     $harga = $_POST['harga'];
-    $kategori = $_POST['category'];
-    echo "$kategori <br/>";
-    $target_dir = "assets/";
+    $target_dir = "../assets/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-
+    $date = date("Y-m-d");
 
     $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
     if ($check !== false) {
@@ -28,7 +26,7 @@ if ($_POST) {
     }
 
     // Check file size
-    if ($_FILES["fileToUpload"]["size"] > 500000) {
+    if ($_FILES["fileToUpload"]["size"] > 5000000) {
         echo "Sorry, your file is too large.";
         $uploadOk = 0;
     }
@@ -47,25 +45,23 @@ if ($_POST) {
         echo "Sorry, your file was not uploaded.";
         // if everything is ok, try to upload file
     } else if (empty($nama_produk)) {
-        echo "<script>alert('nama produk tidak boleh kosong');location.href='tambah_produk.php';</script>";
+        echo "<script>alert('nama produk tidak boleh kosong');location.href='../../admin/tambah_produk.php';</script>";
     } elseif (empty($deskripsi)) {
-        echo "<script>alert('deskripsi tidak boleh kosong');location.href='tambah_produk.php';</script>";
+        echo "<script>alert('deskripsi tidak boleh kosong');location.href='../../admin/tambah_produk.php';</script>";
     } elseif (empty($harga)) {
-        echo "<script>alert('harga tidak boleh kosong');location.href='tambah_produk.php';</script>";
-    } elseif (empty($kategori)) {
-        echo "<script>alert('kategori tidak boleh kosong');location.href='tambah_produk.php';</script>";
+        echo "<script>alert('harga tidak boleh kosong');location.href='../../admin/tambah_produk.php';</script>";
     } else {
         include "koneksi.php"; //INCLUDE KE KELAS yang ada DATABASE 
-        $insert = mysqli_query($conn, "insert into produk value (null ,'$nama_produk' , '$deskripsi', '$harga', '$target_file', '$kategori' )") or die(mysqli_error($conn));
+        $insert = mysqli_query($conn, "insert into barang values(null ,'$nama_produk' , '$date' ,$harga, '$deskripsi','$target_file' )") or die(mysqli_error($conn));
         if ($insert) {
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                 echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";
             } else {
                 echo "Sorry, there was an error uploading your file.";
             }
-            echo "<script>alert('Sukses menambahkan produk');location.href='tambah_produk.php';</script>";
+            echo "<script>alert('Sukses menambahkan produk');location.href='../../admin/tambah_produk.php';</script>";
         } else {
-            echo "<script>alert('Gagal menambahkan produk');location.href='tambah_produk.php';</script>";
+            echo "<script>alert('Gagal menambahkan produk');location.href='../../admin/tambah_produk.php';</script>";
         }
     }
 }

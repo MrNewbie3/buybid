@@ -8,8 +8,8 @@ include "header.php";
     </div>
     <div class="main-wrapper flex flex-col divide-y-2 divide-zinc-300 w-full">
         <?php
-        include "koneksi.php";
-        $qry_produk = mysqli_query($conn, "select * from  detail_transaksi inner join produk on produk.id_produk = detail_transaksi.id_produk where detail_transaksi.id_pelanggan = '$_SESSION[id_pelanggan]' ");
+        include "../../backend/php/koneksi.php";
+        $qry_produk = mysqli_query($conn, "select * from history_lelang");
         while ($dt_produk = mysqli_fetch_array($qry_produk)) {
             $produk =  $dt_produk['nama_produk'];
             $qty =  $dt_produk['qty'];

@@ -6,7 +6,7 @@
     <title></title>
 </head>
 <?php
-include "../header.php";
+include "../frontend/php/header.php";
 ?>
 
 <body>
@@ -18,10 +18,10 @@ include "../header.php";
         </div>
         <div class="flex-1">
             <div class="w-10/12">
-                <h3 class="text-center pt-4 pb-2 font-bold text-2xl">TAMBAH PRODUK</h3>
-                <form action="proses_tambah_produk.php" method="POST" enctype="multipart/form-data">
+                <h3 class="text-center pt-4 pb-2 font-bold text-2xl">TAMBAH Barang</h3>
+                <form action="../backend/php/proses_tambah_produk.php" method="POST" enctype="multipart/form-data">
                     <div>
-                        <label for="nama_produk" class="font-medium">Nama produk : </label>
+                        <label for="nama_produk" class="font-medium">Nama Barang : </label>
                         <input type="text" name="nama_produk" value="" placeholder="masukkan nama barang" class="w-full rounded-md py-2 px-3 bg-white my-2" required>
                     </div>
                     <div>
@@ -29,20 +29,10 @@ include "../header.php";
                         <input type="text" name="deskripsi" value="" placeholder="masukkan deskripsi barang" class="w-full rounded-md py-2 px-3 bg-white my-2" required>
                     </div>
                     <div>
-                        <label for="category" class="font-medium">Kategori : </label>
-                        <select name="category" id="kategori" class="form-control">
-                            <option value="" disabled selected>Choose Vehicle Type</option>
-                            <option value="Saloon">Saloon</option>
-                            <option value="SUV">SUV</option>
-                            <option value="Coupe">Coupe</option>
-                            <option value="Sports Car">Sports Car</option>
-                            <option value="Estate">Estate</option>
-                        </select>
-                    </div>
-                    <div>
-                        <label for="harga" class="font-medium">Harga : </label>
+                        <label for="harga" class="font-medium">Harga awal: </label>
                         <input type="number" name="harga" value="" placeholder="masukkan harga barang" class="w-full rounded-md py-2 px-3 bg-white my-2" required>
                     </div>
+
                     <div>
                         <label for="fileToUpload" class="font-medium">Foto produk : </label>
                         <input type="file" name="fileToUpload" id="fileToUpload" accept="image/*" value="" placeholder="masukkan foto produk" class="w-full rounded-md py-1 px-3 bg-white my-2" required>
@@ -55,7 +45,7 @@ include "../header.php";
 
 
     <?php
-    include '../footer.php';
+    include '../frontend/php/footer.php';
     ?>
 </body>
 

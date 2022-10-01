@@ -10,8 +10,8 @@ if ($_SESSION['status_login'] != true) {
 <head>
   <title>By&Che</title>
   <link rel="stylesheet" href="/dist/output.css">
-  <link rel="stylesheet" media="all" href="./frontend/css/input.css" type="text/css">
-  <link href="./frontend/css/input.css?v=<?php echo time(); ?>" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" media="all" href="../css/input.css" type="text/css">
+  <link href="../css/input.css?v=<?php echo time(); ?>" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -43,7 +43,7 @@ if ($_SESSION['status_login'] != true) {
 </head>
 
 <body class="min-h-screen">
-  <?php if ($_SESSION['role'] == "pelanggan") : ?>
+  <?php if ($_SESSION['role'] == "masyarakat") : ?>
     <nav>
       <div class="navbar-wrapper max-w-screen  bg-white pr-6 font-nav">
         <div class="content-wrapper flex flex-row w-full">
@@ -74,17 +74,7 @@ if ($_SESSION['status_login'] != true) {
                           shopping_cart
                         </span>
                       </a>
-                      <div class="count-keranjang absolute top-1 right-2">
-                        <?php
-                        include "koneksi.php";
-                        $qry_produk = mysqli_query($conn, "select count(*) from detail_transaksi where id_pelanggan = $_SESSION[id_pelanggan]");
-                        $dt_produk = mysqli_fetch_array($qry_produk);
-                        ?>
-                        <p class="text-sm bg-semiblack text-white rounded-full w-4 h-4 text-center "><?= @$_SESSION['cart'] == null ? 0 : count(@$_SESSION['cart'])  ?></p>
-                        <?php
 
-                        ?>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -97,7 +87,7 @@ if ($_SESSION['status_login'] != true) {
         </div>
       </div>
     </nav>
-  <?php elseif ($_SESSION["role"] == 'petugas') : ?>
+  <?php elseif ($_SESSION["level"] == 'admin') : ?>
     <nav>
       <div class="navbar-wrapper max-w-screen  bg-white pr-6 font-nav">
         <div class="content-wrapper flex flex-row w-full">
@@ -129,4 +119,34 @@ if ($_SESSION['status_login'] != true) {
       </div>
     </nav>
 
+  <?php elseif ($_SESSION["level"] == 'petugas') : ?>
+
+    <nav>
+      <div class="navbar-wrapper max-w-screen  bg-white pr-6 font-nav">
+        <div class="content-wrapper flex flex-row w-full">
+          <div class="left-content flex flex-row w-full gap-14 ">
+            <div class="brand bg-semiblack p-4 px-8">
+              <div class="brand-wrapper border-2 p-1 box-border px-6 ">
+                <div class="text-brand font-logo text-4xl text-white ">
+                  By&Che
+                </div>
+              </div>
+            </div>
+            <div class="navigation-bar w-full">
+              <ul class="navigation-bar flex flex-row items-center divide-x-2 divide-black h-full tracking-wide text-lg uppercase font-semibold">
+                <li class="px-10"><a href="./tambah_produk.php">New Product</a></li>
+                <li class="px-10"><a href="./update_histori_pembelian.php">Update History Product</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="right-content w-full">
+            <div class="content-wrapper flex justify-end items-center divide-x-2 divide-semiblack  h-full">
+              <div class="account-settings px-3 text-xl font-medium tracking-widest">
+                <a href="logout.php">logout</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
   <?php endif ?>

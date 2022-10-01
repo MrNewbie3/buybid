@@ -14,7 +14,7 @@ if (count($cart) > 0) {
     $id = mysqli_insert_id($conn);
     foreach ($cart as $key_produk => $val_produk) {
         $subtotal  += $val_produk["qty"] * $val_produk["harga"];
-        mysqli_query($conn, "insert into detail_transaksi (id_pelanggan,id_produk,qty,subtotal,tgl_transaksi, status) value('" . $_SESSION['id_pelanggan'] . "','" . $val_produk['id_produk'] . "','" . $val_produk['qty'] . "','" . $subtotal . "', '" . date('Y-m-d') . "', 'Preparing')");
+        mysqli_query($conn, "insert into lelang (id_pelanggan,id_produk,qty,subtotal,tgl_transaksi, status) value('" . $_SESSION['id_pelanggan'] . "','" . $val_produk['id_produk'] . "','" . $val_produk['qty'] . "','" . $subtotal . "', '" . date('Y-m-d') . "', 'Preparing')");
     }
     unset($_SESSION['cart']) ?>
     <script>

@@ -18,7 +18,7 @@ if (isset($_SESSION['status_login'])) {
   <div class="row px-3" style="margin-top:50px;">
     <div class="col-md"></div>
     <div class="col-md rounded bg-light" style="box-shadow: 4px 4px 5px -4px;padding:20px">
-      <form action="proses_login.php" method="post">
+      <form action="../../backend/php/proses_login.php" method="post">
         <h3 align="center">Wellcome Back!</h3>
         Username:
         <input type="text" name="username" value="" class="form-control">
@@ -27,10 +27,11 @@ if (isset($_SESSION['status_login'])) {
         role:
         <select name="role" id="" class="form-control">
           <option value="" disabled selected>pilih role</option>
-          <option value="pelanggan">pelanggan</option>
-          <option value="petugas">admin</option>
+          <option value="Masyarakat">Masyarakat</option>
+          <option value="petugas">Petugas</option>
         </select>
-        <center><input type="submit" name="login" class="btn btn-dark" value="LOGIN"></center>
+
+        <center><input type="submit" name="login" class="btn btn-dark mt-3" value="LOGIN"></center>
       </form>
     </div>
     <div class="col-md"></div>

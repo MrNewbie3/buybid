@@ -4,11 +4,11 @@ if ($_POST) {
     $password = $_POST['password'];
     $role = $_POST['role'];
     if (empty($username)) {
-        echo "<script>alert('Username tidak boleh kosong');location.href='login.php';</script>";
+        echo "<script>alert('Username tidak boleh kosong');location.href='../../frontend/php/login.php';</script>";
     } elseif (empty($password)) {
-        echo "<script>alert('Password tidak boleh kosong');location.href='login.php';</script>";
+        echo "<script>alert('Password tidak boleh kosong');location.href='../../frontend/php/login.php';</script>";
     } elseif (empty($role)) {
-        echo "<script>alert('Role tidak boleh kosong');location.href='login.php';</script>";
+        echo "<script>alert('Role tidak boleh kosong');location.href='../../frontend/php/login.php';</script>";
     } else {
         include "koneksi.php";
         $qry_login = mysqli_query($conn, "select * from  $role  where nama = '$username' and password = '$password'");
@@ -18,17 +18,18 @@ if ($_POST) {
             $dt_role = mysqli_fetch_array($qry_role);
             session_start();
             $_SESSION['role'] = $dt_role['TABLE_NAME'];
-            $_SESSION['id_pelanggan'] = $dt_login['id_pelanggan'];
+            $_SESSION['id_masyarakat'] = $dt_login['id_masyarakat'];
             $_SESSION['nama'] = $dt_login['nama'];
             $_SESSION['status_login'] = true;
-            if ($role == "pelanggan") {
-                header("location: home.php");
+            $_SESSION['level'] = $dt_login['level'];
+            if ($role == "Masyarakat") {
+                header("location: ../../frontend/php/home.php");
             } else if ($role == "petugas") {
-                $_SESSION['id_petugas'] = $dt_login['id_pelanggan'];
-                header("location: admin/tambah_petugas.php");
+                $_SESSION['id_petugas'] = $dt_login['id_masyarakat'];
+                header("location: ../../admin/tambah_petugas.php");
             }
         } else {
-            echo "<script>alert('Username dan Password tidak benar');location.href='login.php';</script>";
+            echo "<script>alert('Username dan Password tidak benar');location.href='../../frontend/php/login.php';</script>";
         }
     }
 }
