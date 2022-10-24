@@ -16,7 +16,7 @@ if ($_POST) {
     } else {
 
 
-        $insert = mysqli_query($conn, "insert into lelang values( null, $dt_produk[id_barang], '$date_today', $penawaran_produk, 1, 1 , $_SESSION[id_masyarakat] )");
+        $insert = mysqli_query($conn, "insert into lelang values( null, $dt_produk[id_barang], '$date_today', $penawaran_produk, 1, 1, $_SESSION[id_masyarakat] )");
         if ($insert) {
             echo "<script>
             alert('Success to bid')

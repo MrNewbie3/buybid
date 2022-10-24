@@ -30,7 +30,15 @@ include "../frontend/php/header.php";
                     </div>
                     <div>
                         <label for="harga" class="font-medium">Harga awal: </label>
-                        <input type="number" name="harga" value="" placeholder="masukkan harga barang" class="w-full rounded-md py-2 px-3 bg-white my-2" required>
+                        <input type="number" min="1" name="harga" value="" placeholder="masukkan harga barang" class="w-full rounded-md py-2 px-3 bg-white my-2" required>
+                    </div>
+                    <div>
+                        <label for="harga" class="font-medium">Kelipatan penawaran: </label>
+                        <input type="number" min="1" name="kelipatan" value="" placeholder="masukkan harga barang" class="w-full rounded-md py-2 px-3 bg-white my-2" required>
+                    </div>
+                    <div>
+                        <label for="harga" class="font-medium">Harga buyout: </label>
+                        <input type="number" min="1" name="buyout" value="" placeholder="masukkan harga barang" class="w-full rounded-md py-2 px-3 bg-white my-2" required>
                     </div>
 
                     <div>

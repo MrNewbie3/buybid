@@ -3,6 +3,8 @@ if ($_POST) {
     $nama_produk = $_POST['nama_produk'];
     $deskripsi = $_POST['deskripsi'];
     $harga = $_POST['harga'];
+    $kelipatan = $_POST['kelipatan'];
+    $buyout = $_POST['buyout'];
     $target_dir = "../assets/";
     $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
     $uploadOk = 1;
@@ -50,9 +52,13 @@ if ($_POST) {
         echo "<script>alert('deskripsi tidak boleh kosong');location.href='../../admin/tambah_produk.php';</script>";
     } elseif (empty($harga)) {
         echo "<script>alert('harga tidak boleh kosong');location.href='../../admin/tambah_produk.php';</script>";
+    } elseif (empty($kelipatan)) {
+        echo "<script>alert('kelipatan tawar tidak boleh kosong');location.href='../../admin/tambah_produk.php';</script>";
+    } elseif (empty($buyout)) {
+        echo "<script>alert('harga buyout tidak boleh kosong');location.href='../../admin/tambah_produk.php';</script>";
     } else {
         include "koneksi.php"; //INCLUDE KE KELAS yang ada DATABASE 
-        $insert = mysqli_query($conn, "insert into barang values(null ,'$nama_produk' , '$date' ,$harga, '$deskripsi','$target_file' )") or die(mysqli_error($conn));
+        $insert = mysqli_query($conn, "insert into barang values(null ,'$nama_produk' , '$date' ,$harga, '$deskripsi','$target_file', '$kelipatan', '$buyout' )") or die(mysqli_error($conn));
         if ($insert) {
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
                 echo "The file " . htmlspecialchars(basename($_FILES["fileToUpload"]["name"])) . " has been uploaded.";

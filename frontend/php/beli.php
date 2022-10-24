@@ -1,7 +1,9 @@
 <?php
 include "header.php";
 include "../../backend/php/koneksi.php";
-$qry_detail_produk = mysqli_query($conn, "select * from barang where id_barang = '" . $_GET['id_produk'] . "'");
+$qry_detail_produk = mysqli_query($conn, "select * from barang  where id_barang = '" . $_GET['id_produk'] . "'");
+$qry_on_lelang = mysqli_query($conn, "select * from lelang where id_barang = $_GET[id_produk]");
+$dt_on_lelang = mysqli_fetch_array($qry_on_lelang);
 $dt_produk = mysqli_fetch_array($qry_detail_produk);
 ?>
 <h2 class="text-center text-5xl my-16 font-nav font-semibold tracking-widest">Discover Your Product</h2>
@@ -26,20 +28,19 @@ $dt_produk = mysqli_fetch_array($qry_detail_produk);
                         <div class="price w-full flex flex-row justify-between items-center">
                             <p class="font-medium">Price Now</p>
                             <hr class="bg-zinc-300 w-1/4 mx-3 h-0.5">
-                            <input type="number" name="harga_bid_awal" disabled value="<?= number_format($dt_produk['harga_awal'], 0, ",", ".") ?>">
-                            <p class="font-semibold font-nav tracking-wide text-xl"></p>
+                            <input type="number" class="bg-zinc-200 font-medium" name="harga_bid_awal" disabled value="<?= number_format(isset($dt_on_lelang['harga_akhir']) ? $dt_on_lelang["harga_akhir"] : $dt_produk["harga_awal"], 0, ",", ".") ?>">
                         </div>
 
                     </div>
                 </div>
                 <div class="button-option w-fit flex flex-row items-center p-3 px-6 box-border font-medium bg-semiblack cursor-pointer text-white rounded-full">
-                    <p class="text-mata-uang">Bid Rp.</p>
-                    <input class="" name="harga_penawaran" type="submit" value="<?= number_format($dt_produk['harga_awal'] + 100, 0, ",", ".") ?>">
+                    <label for="harga_penawaran" class="text-mata-uang">Bid Rp.</label>
+                    <input class="" name="harga_penawaran" type="submit" value="<?= number_format(isset($dt_on_lelang['harga_akhir']) ? $dt_on_lelang["harga_akhir"] + $dt_produk["kelipatan_bid"] : $dt_produk["harga_awal"] + $dt_produk["kelipatan_bid"], 0, ",", ".") ?>">
                 </div>
             </div>
         </div>
+    </form>
 </div>
-</form>
 </div>
 <?php
 include "footer.php";

@@ -1,7 +1,7 @@
 <?php
 include "header.php";
 ?>
-<div class="top-bar w-full flex flex-col my-16 gap-y-8 " data-aos="zoom-in-up">
+<div class="top-bar w-full flex flex-col my-16 gap-y-8 ">
     <h2 class=" text-5xl text-center font-nav font-semibold tracking-widest">Find Your Dream Luxury Cars</h2>
     <hr class="bg-yellow-300 self-center w-1/4 h-2">
 </div>
@@ -32,16 +32,19 @@ include "header.php";
         <?php
         }
         while ($dt_barang = mysqli_fetch_array($qry_produk)) {
+            include "../../backend/php/koneksi.php";
+            $qry_get_next_bid_price = mysqli_query($conn, "select max(harga_akhir) as harga_akhir from lelang where id_barang = $dt_barang[id_barang]");
+            $fetch_array_harga_bid = mysqli_fetch_array($qry_get_next_bid_price);
         ?>
             <a href="./beli.php?id_produk=<?= $dt_barang['id_barang'] ?>">
-                <div class="wrapper-card hover:shadow-stone-500 pb-4 hover:shadow-2xl rounded-lg transition-shadow duration-300">
+                <div class="bg-white wrapper-card hover:shadow-stone-500 pb-4 hover:shadow-2xl rounded-lg transition-shadow duration-300">
                     <div class="card-img text-center font-semibold flex flex-col gap-y-5">
-                        <img src="../<?= $dt_barang['foto_produk'] ?>" class="w-96">
-                        <p class="font-nav text-zinc-400 text-lg">Rp. <?= number_format($dt_barang['harga_awal'], 0, ",", ".") ?></p>
+                        <img src="../<?= $dt_barang['foto_produk'] ?>" class="object-contain w-80 h-80 ">
+                        <p class="font-nav text-zinc-400 text-lg">Rp. <?= number_format(isset($fetch_array_harga_bid["harga_akhir"]) ? $fetch_array_harga_bid['harga_akhir'] : $dt_barang['harga_awal'], 0, ",", ".") ?></p>
                         <p class=""><?= $dt_barang['nama_barang'] ?></p>
                         <div class="flex flex-row justify-around gap-x-8 px-4">
-                            <button class="bg-yellow-300 w-full py-2 rounded-md" type="submit">Buyout Rp.225</button>
-                            <button class="bg-yellow-300 w-full py-2 rounded-md" type="submit">Bid Rp.<?= isset($harga["harga_akhir"]) ? $harga['harga_akhir'] : $dt_barang['harga_awal'] ?></button>
+                            <button class="bg-yellow-300 w-full py-2 rounded-md" type="submit">Buyout Rp.<?= $dt_barang['harga_buyout'] ?></button>
+                            <button class="bg-yellow-300 w-full py-2 rounded-md" type="submit">Bid Rp.<?= isset($fetch_array_harga_bid["harga_akhir"]) ? ($fetch_array_harga_bid['harga_akhir'] + $dt_barang['kelipatan_bid']) : ($dt_barang['harga_awal'] + $dt_barang['kelipatan_bid']) ?></button>
                         </div>
                     </div>
                 </div>

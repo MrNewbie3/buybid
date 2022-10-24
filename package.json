@@ -2,7 +2,7 @@
   "name": "buy_bid",
   "version": "1.0.0",
   "description": "toko online php native",
-  "main": "app.ts",
+  "main": "app.mjs",
   "scripts": {
     "test": "npm run dev",
     "tailwind": "npx tailwindcss -i ./frontend/css/input.css -o ./dist/output.css --watch"
@@ -23,6 +23,8 @@
   },
   "dependencies": {
     "aos": "^2.3.4",
+    "html-pdf-node": "^1.0.8",
+    "mysql": "^2.18.1",
     "sweetalert2": "^11.4.33"
   },
   "keywords": [

@@ -9,7 +9,7 @@ if ($_SESSION['status_login'] != true) {
 
 <head>
   <title>By&Che</title>
-  <link rel="stylesheet" href="/dist/output.css">
+  <link rel="stylesheet" href="../../dist/output.css">
   <link rel="stylesheet" media="all" href="../css/input.css" type="text/css">
   <link href="../css/input.css?v=<?php echo time(); ?>" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
@@ -42,7 +42,7 @@ if ($_SESSION['status_login'] != true) {
   </script>
 </head>
 
-<body class="min-h-screen">
+<body class="min-h-screen bg-zinc-200">
   <?php if ($_SESSION['role'] == "masyarakat") : ?>
     <nav>
       <div class="navbar-wrapper max-w-screen  bg-white pr-6 font-nav">
@@ -104,7 +104,9 @@ if ($_SESSION['status_login'] != true) {
                 <li class="px-10"><a href="./tambah_pelanggan.php">New Users</a></li>
                 <li class="px-10"><a href="./tambah_petugas.php">New Admin</a></li>
                 <li class="px-10"><a href="./tambah_produk.php">New Product</a></li>
-                <li class="px-10"><a href="./update_histori_pembelian.php">Update History Product</a></li>
+                <li class="px-10"><a href="./update_histori_pembelian.php">Update Product</a></li>
+                <li class="px-10"><a href="./on_auction_layout.php">On Auction Product</a></li>
+
               </ul>
             </div>
           </div>
@@ -135,7 +137,8 @@ if ($_SESSION['status_login'] != true) {
             <div class="navigation-bar w-full">
               <ul class="navigation-bar flex flex-row items-center divide-x-2 divide-black h-full tracking-wide text-lg uppercase font-semibold">
                 <li class="px-10"><a href="./tambah_produk.php">New Product</a></li>
-                <li class="px-10"><a href="./update_histori_pembelian.php">Update History Product</a></li>
+                <li class="px-10"><a href="./update_histori_pembelian.php">Update Product</a></li>
+                <li class="px-10"><a href="./on_auction_layout.php">On Auction Product</a></li>
               </ul>
             </div>
           </div>

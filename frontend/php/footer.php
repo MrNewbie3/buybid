@@ -39,7 +39,7 @@
 </footer>
 <script></script>
 <script src="https://kit.fontawesome.com/b8dbbcbd36.js" crossorigin="anonymous"></script>
-<script type="module" src="./frontend/js/index.js" crossorigin="anonymous"></script>
+<script src="../js/index.js"></script>
 </body>
 
 </html>
